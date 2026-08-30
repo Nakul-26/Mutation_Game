@@ -1,0 +1,362 @@
+# Game #2 — Component System Design
+
+**Status:** 🟡 Working Design
+**Version:** 0.1
+
+---
+
+## 1. Purpose
+
+The Component System is the foundation of the player's build.
+
+Components are modular gameplay building blocks that provide effects, modifiers, properties, and potential interactions.
+
+A component should **not** directly define a complete build or a specific combination with another component.
+
+Instead:
+
+> **Component → provides data/effects → game systems interpret those effects**
+
+This allows the game to support many builds without manually implementing every possible combination.
+
+---
+
+## 2. Component Categories
+
+The initial component system supports five broad sources:
+
+### Biological Mutations
+
+Examples:
+
+* Claws
+* Wings
+* Tentacles
+* Poison glands
+* Regenerative organs
+
+### Robot Modules
+
+Examples:
+
+* Weapons
+* Armor
+* Processors
+* Engines
+* Energy systems
+
+### Magical Artifacts / Materials
+
+Examples:
+
+* Fire
+* Lightning
+* Shadow
+* Time
+* Other elemental or magical properties
+
+### Experimental Technology
+
+Examples:
+
+* Unstable prototypes
+* Experimental weapons
+* Neural devices
+* Artificial enhancement systems
+
+### Alien Organisms
+
+Examples:
+
+* Alien body parts
+* Unusual biological abilities
+* Organisms with unique properties
+
+These categories are intentionally broad so future components can be added without changing the fundamental system.
+
+---
+
+## 3. Initial Component Count
+
+The first complete game design will target:
+
+**12 foundational components**
+
+However, development will begin with only:
+
+**3–4 prototype components**
+
+Additional components will be introduced only after the underlying system has been tested successfully.
+
+---
+
+## 4. Active Component Slots
+
+The player will initially have:
+
+**6 active component slots**
+
+### Offensive Slots
+
+**2 slots**
+
+Primarily intended for components affecting attacks and offensive behavior.
+
+### Adaptation Slots
+
+**2 slots**
+
+Primarily intended for defensive, biological, passive, or survivability-related components.
+
+### Ability Slots
+
+**2 slots**
+
+Primarily intended for active abilities, movement, utility, or special effects.
+
+---
+
+## 5. Important Rule: Components Are Not Locked to One Gameplay Effect
+
+A component does not necessarily mean:
+
+> "This is an attack component."
+
+or:
+
+> "This is a defense component."
+
+Instead, a component can provide one or more effects.
+
+Those effects may be compatible with different targets.
+
+For example:
+
+**Fire Core**
+
+could potentially provide:
+
+* Fire damage
+* Burn
+* Fire resistance
+* Heat-related effects
+
+Depending on the component's configuration and the build, these effects could influence:
+
+* Attacks
+* Defense
+* Abilities
+* Movement
+* Other gameplay systems
+
+The exact Target Model will be defined separately.
+
+---
+
+## 6. Component Structure
+
+Every component should conceptually contain:
+
+```text
+Component
+├── Identity
+├── Category
+├── Tags
+├── Effects
+├── Allowed Targets
+├── Modifiers
+├── Synergy Information
+└── Upgrade Information
+```
+
+### Identity
+
+Defines the component itself.
+
+Examples:
+
+* ID
+* Name
+* Description
+* Icon
+* Visual representation
+
+### Category
+
+Defines the broad origin/type.
+
+Examples:
+
+* Biological
+* Mechanical
+* Magical
+* Experimental
+* Alien
+
+### Tags
+
+Describe the properties of the component.
+
+Examples:
+
+```text
+MELEE
+BIOLOGICAL
+FIRE
+ELEMENTAL
+DEFENSIVE
+MOBILITY
+```
+
+Tags are important for the generic interaction system.
+
+### Effects
+
+The actual gameplay effects provided by the component.
+
+Examples:
+
+* Fire Damage
+* Burn
+* Dash
+* Armor
+* Regeneration
+
+The Effect Model is documented separately.
+
+### Allowed Targets
+
+Defines which gameplay systems the component's effects can interact with.
+
+Examples:
+
+* Attack
+* Defense
+* Ability
+* Movement
+* Projectile
+
+This prevents every effect from being applied everywhere automatically.
+
+### Modifiers
+
+Defines changes the component can make to existing effects.
+
+Examples:
+
+* Increase damage
+* Increase duration
+* Reduce cooldown
+* Increase range
+* Change behavior
+
+### Synergy Information
+
+Contains information that allows the Combination/Synergy Engine to identify meaningful interactions.
+
+Components should primarily rely on generic rules rather than explicit pair-by-pair recipes.
+
+### Upgrade Information
+
+Defines how the component may evolve through progression.
+
+Upgrades should preferably introduce new behavior or interactions rather than only increasing numerical values.
+
+---
+
+## 7. Component Independence
+
+A component should remain functional when used alone.
+
+For example:
+
+```text
+Claw
+```
+
+should provide a valid basic offensive behavior.
+
+Adding another component should enhance or alter the existing behavior rather than being required for the first component to function.
+
+This allows the system to support:
+
+* 1-component builds
+* 2-component builds
+* 3-component builds
+* 4-component builds
+* eventually 6-component builds
+
+---
+
+## 8. Dynamic Builds
+
+Components can be:
+
+* Equipped
+* Unequipped
+* Replaced
+* Added
+* Removed
+
+The player's final build must be recalculated when the active component set changes.
+
+Example:
+
+```text
+Claw
+↓
+Claw + Fire
+↓
+Claw + Fire + Dash
+↓
+Replace Fire
+↓
+Claw + Lightning + Dash
+```
+
+The system should derive the resulting build from the currently equipped components rather than relying on manually defined build configurations.
+
+---
+
+## 9. Scalability Requirement
+
+The system must not require manually defining every possible combination.
+
+For example, with 12 components, the system should not contain hundreds of manually coded rules such as:
+
+```text
+Component A + Component B = Result X
+Component A + Component C = Result Y
+Component A + Component B + Component C = Result Z
+```
+
+Instead, components should expose reusable properties and effects.
+
+The Combination/Synergy Engine should interpret those properties using generic rules.
+
+---
+
+## 10. Design Principle
+
+The fundamental principle of the Component System is:
+
+> **Components provide building blocks. The game's systems determine what those building blocks produce together.**
+
+This allows a small number of components to generate a large variety of builds while keeping the implementation manageable for a solo developer.
+
+---
+
+## 11. Open Questions
+
+The following are intentionally left for subsequent design documents:
+
+* Exact Effect Model
+* Exact Target Model
+* How effects attach to targets
+* How multiple effects stack
+* How conflicts are resolved
+* How synergies are detected
+* How synergy results are generated
+* Exact component slot restrictions
+* Exact upgrade mechanics
+* Exact first 3–4 prototype components
