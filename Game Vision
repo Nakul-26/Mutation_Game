@@ -1,0 +1,222 @@
+# Game #2 — Game Vision
+
+**Status:** 🟡 Working Foundation
+**Version:** 0.1
+
+---
+
+## 1. Game Overview
+
+Game #2 is a **2D / 2.5D action game** designed for a solo developer and Android-first release.
+
+The game focuses on **combat, exploration, component collection, build creation, experimentation, and progression**.
+
+The central gameplay idea is:
+
+> **Fight → Defeat → Collect → Build → Experiment → Evolve → Fight Stronger Enemies**
+
+The game should achieve significant gameplay and programming depth without requiring a huge amount of visual content or a large open world.
+
+---
+
+## 2. Core Design Philosophy
+
+The game follows these principles:
+
+### Deep Systems, Limited Content
+
+We prioritize complex and interacting gameplay systems over large quantities of assets, levels, and environments.
+
+### Simple to Understand, Deep to Master
+
+The basic gameplay should be easy for a new player to understand, while component combinations and build interactions provide depth.
+
+### Systemic Gameplay
+
+Components should interact through general rules rather than requiring manually designed behavior for every possible combination.
+
+### Solo-Developer Feasibility
+
+Every major feature must be evaluated against the time and complexity realistically manageable by one developer.
+
+### Expandable Foundation
+
+The initial game should use a small number of components and systems, but the architecture should allow expansion later.
+
+---
+
+## 3. Target Platform
+
+**Primary:** Android
+
+**Game Format:** 2D / 2.5D
+
+Limited 3D may be used where it provides meaningful gameplay or visual value without significantly increasing development scope.
+
+---
+
+## 4. Core Gameplay Pillars
+
+### 4.1 Combat
+
+The player fights hostile creatures, machines, experiments, and other entities.
+
+Combat should feel responsive and satisfying.
+
+### 4.2 Components
+
+Enemies can drop components such as:
+
+* Biological mutations
+* Robot modules
+* Magical artifacts/materials
+* Experimental technology
+* Alien organism parts
+* Weapons and other usable components
+
+### 4.3 Build Creation
+
+The player combines a limited number of components to create a unique build.
+
+The initial system will use:
+
+* **12 foundational components**
+* **6 active component slots**
+
+  * 2 Offensive
+  * 2 Adaptation
+  * 2 Ability
+
+### 4.4 Experimentation
+
+Components can modify attacks, defense, movement, abilities, and other gameplay systems.
+
+The player should discover useful combinations rather than simply equipping increasingly powerful items.
+
+### 4.5 Progression
+
+The game will use a **hybrid progression model**:
+
+* Permanent progression between runs
+* Run-specific component/build decisions
+
+---
+
+## 5. Component System Goal
+
+The component system should allow a relatively small number of components to produce a large number of meaningful builds.
+
+Components should not represent fixed combinations such as:
+
+> Fire + Claw = Fire Claw
+
+Instead, components provide effects and properties that are interpreted by the game's general systems.
+
+The intended architecture is:
+
+**Components → Effects → Targets → Modifiers → Generic Rules → Synergies → Final Build**
+
+The system should avoid manually implementing every possible component combination.
+
+---
+
+## 6. Initial Development Strategy
+
+The component system will **not** begin with all 12 components.
+
+Development will proceed incrementally:
+
+1. Design the component blueprint.
+2. Design the effect model.
+3. Design the target model.
+4. Design the combination/synergy engine.
+5. Implement 3–4 initial components.
+6. Test every possible non-empty combination.
+7. Test adding/removing components dynamically.
+8. Verify that the resulting builds are meaningfully different.
+9. Fix and improve the underlying system.
+10. Only then introduce additional components.
+
+The same incremental approach will be followed during the actual game development.
+
+---
+
+## 7. World Premise — The Failed Experiment
+
+The current locked world premise is:
+
+> **The player is a failed experiment from an abandoned facility.**
+
+Something went wrong inside the facility.
+
+The creatures have mutated, machines have become hostile, and experimental technologies and strange materials remain scattered throughout the facility.
+
+The player must travel toward the center of the facility to discover:
+
+> **What were they actually created for?**
+
+The game will not immediately explain the player's identity or origins.
+
+---
+
+## 8. Mystery Through Gameplay
+
+The player's ability to absorb and install components is itself part of the mystery.
+
+The game may begin with:
+
+> The player wakes up without knowing what they are.
+
+They encounter a dead creature and discover that part of the creature can be absorbed.
+
+The player's body changes.
+
+Later, the player encounters machines and discovers that mechanical modules can also be installed.
+
+Eventually, the player encounters increasingly strange materials, artifacts, and organisms.
+
+This should make the player question:
+
+> **What exactly am I?**
+
+The exact explanation will be developed later.
+
+---
+
+## 9. Currently Locked Decisions
+
+* 2D / 2.5D direction
+* Android-first
+* Solo-developer scope
+* Combat-focused gameplay
+* Component-based build system
+* 12 initial foundational components
+* 6 active component slots
+* 2 Offensive + 2 Adaptation + 2 Ability slots
+* Hybrid permanent + run-specific progression
+* Generic effect/interaction system
+* Initial development with 3–4 components
+* **The Failed Experiment** world premise
+* Component absorption/installing is part of the game's mystery
+
+---
+
+## 10. Currently Open Decisions
+
+The following are intentionally not finalized:
+
+* Exact combat mechanics
+* Exact player character design
+* Exact 12 components
+* Exact component blueprint
+* Exact effect model
+* Exact target model
+* Combination/synergy rules
+* Upgrade system
+* Run structure
+* Level/world structure
+* Art style
+* Story details
+* Exact explanation for the player's existence
+* Monetization
+* Final game title
